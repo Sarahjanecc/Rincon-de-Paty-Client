@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllBooksService } from "../services/book.services";
 
-function Books() {
+function AudioBooks() {
   const [allBooks, setAllBooks] = useState(null);
 
   const navigate = useNavigate();
@@ -14,15 +14,16 @@ function Books() {
 
   const getAllBooks = async () => {
     try {
+      // const response = await axios.get("http://localhost:5005/api/books");
       const response = await getAllBooksService();
       setAllBooks(response.data);
       console.log(response.data);
     } catch (error) {
-      // if (error.response.status === 401) {
-      //   navigate("/login");
-      // } else {
-      //   navigate("/error");
-      // }
+      if (error.response.status === 401) {
+        navigate("/login");
+      } else {
+        navigate("/error");
+      }
     }
   };
 
@@ -44,4 +45,4 @@ function Books() {
   );
 }
 
-export default Books;
+export default AudioBooks;

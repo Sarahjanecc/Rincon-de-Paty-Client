@@ -13,6 +13,7 @@ import AdminMessages from "../pages/AdminMessages";
 import AdminBooks from "../pages/AdminBooks";
 import AdminCreate from "../pages/AdminCreate";
 import AdminEdit from "../pages/AdminEdit";
+import AudioBooks from "../pages/AudioBooks";
 
 const AllRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AllRoutes = () => {
 
       {/* private routes */}
       <Route path="/books" element={<Books />} />
+      <Route path="/books/audio" element={<AudioBooks />} />
       <Route path="/main" element={<Main />} />
       <Route path="/messages" element={<Messages />} />
       <Route path="/information" element={<Information />} />
