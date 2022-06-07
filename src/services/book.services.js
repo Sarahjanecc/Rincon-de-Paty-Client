@@ -4,11 +4,15 @@ const getAllBooksService = () => {
   return service.get("/book");
 };
 
-const addNewBooksService = (newBook) => {
-  return service.post("/book", newBook);
+const getAllAudioBooksService = () => {
+  return service.get("/book/audio");
 };
 
-const getAudioBooksDetailsService = (id) => {
+const addNewBooksService = (newBook) => {
+  return service.post("/book/create", newBook);
+};
+
+const getBookById = (id) => {
   return service.get(`/book/${id}`);
 };
 
@@ -22,8 +26,9 @@ const editBooksService = (id, books) => {
 
 export {
   getAllBooksService,
+  getAllAudioBooksService,
   addNewBooksService,
-  getAudioBooksDetailsService,
+  getBookById,
   deleteBooksService,
   editBooksService,
 };

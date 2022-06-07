@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { Link, useNavigate } from "react-router-dom";
-import { getAllBooksService } from "../services/book.services";
+import { getAllAudioBooksService } from "../services/book.services";
 
 function AudioBooks() {
   const [allBooks, setAllBooks] = useState(null);
@@ -14,8 +14,7 @@ function AudioBooks() {
 
   const getAllBooks = async () => {
     try {
-      // const response = await axios.get("http://localhost:5005/api/books");
-      const response = await getAllBooksService();
+      const response = await getAllAudioBooksService();
       setAllBooks(response.data);
       console.log(response.data);
     } catch (error) {
@@ -37,7 +36,7 @@ function AudioBooks() {
         allBooks.map((eachBook) => {
           return (
             <div key={eachBook._id}>
-              <Link to={`/books/${eachBook._id}/audio`}>{eachBook.title}</Link>
+              <Link to={`/audiobooks/${eachBook._id}`}>{eachBook.title}</Link>
             </div>
           );
         })}

@@ -18,11 +18,11 @@ function Books() {
       setAllBooks(response.data);
       console.log(response.data);
     } catch (error) {
-      // if (error.response.status === 401) {
-      //   navigate("/login");
-      // } else {
-      //   navigate("/error");
-      // }
+      if (error.response.status === 401) {
+        navigate("/login");
+      } else {
+        navigate("/error");
+      }
     }
   };
 
@@ -36,7 +36,7 @@ function Books() {
         allBooks.map((eachBook) => {
           return (
             <div key={eachBook._id}>
-              <Link to={`/books/${eachBook._id}/audio`}>{eachBook.title}</Link>
+              <Link to={`/books/${eachBook._id}`}>{eachBook.title}</Link>
             </div>
           );
         })}
