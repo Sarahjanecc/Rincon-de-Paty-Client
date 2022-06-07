@@ -1,56 +1,69 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   editBooksService,
-  getAllBooksService,
+  getBookById,
+  deleteBooksService,
 } from "../services/book.services";
 import Layout from "../components/Layout";
+import { AuthContext } from "../context/auth.context.js";
 
 function AdminEdit() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
   const [url, setUrl] = useState("");
   const [price, setPrice] = useState(0);
-  const [type, setType] = useState[""];
+  const [type, setType] = useState("");
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
-  const handleImgChange = (e) => setImg(e.target.checked);
-  const handleUrlChange = (e) => setUrl(e.target.checked);
-  const handlePriceChange = (e) => setPrice(e.target.checked);
-  const handleTypeChange = (e) => setType(e.target.checked);
+  const handleImgChange = (e) => setImg(e.target.value);
+  const handleUrlChange = (e) => setUrl(e.target.value);
+  const handlePriceChange = (e) => setPrice(e.target.value);
+  const handleTypeChange = (e) => setType(e.target.value);
 
+  const handleDelete = () => {
+    deleteBooksService(id);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const theBooks = {
+      const books = {
         title,
         description,
         img,
         url,
         price,
         type,
+        adminId: user._id,
       };
 
-      await editBooksService(id, theBooks);
-      navigate(`/books/${id}`);
+      await editBooksService(id, books);
+      if (type === "audiolibro") {
+        navigate(`/audiobooks`);
+      } else {
+        navigate(`/books`);
+      }
     } catch (error) {
       navigate("/error");
     }
   };
 
   useEffect(() => {
-    getAllBooks();
-  }, []);
+    getBook(id);
+  }, [id]);
 
-  const getAllBooks = async () => {
+  const getBook = async (bookId) => {
+    console.log(id);
     try {
-      const response = await getAllBooksService(id);
+      const response = await getBookById(bookId);
+      console.log(response);
       const { title, description, img, url, price, type } = response.data;
 
       setTitle(title);
@@ -59,9 +72,7 @@ function AdminEdit() {
       setUrl(url);
       setPrice(price);
       setType(type);
-    } catch (error) {
-      navigate("/error");
-    }
+    } catch (error) {}
   };
 
   return (
@@ -86,17 +97,17 @@ function AdminEdit() {
         />
 
         <label htmlFor="img">Image</label>
-        <input type="src" name="img" onChange={handleImgChange} checked={img} />
+        <input type="src" name="img" onChange={handleImgChange} value={img} />
 
         <label htmlFor="url">Video</label>
-        <input type="url" name="url" onChange={handleUrlChange} checked={url} />
+        <input type="url" name="url" onChange={handleUrlChange} value={url} />
 
         <label htmlFor="price">Price</label>
         <input
           type="text"
           name="price"
           onChange={handlePriceChange}
-          checked={price}
+          value={price}
         />
 
         <label htmlFor="type">Type</label>
@@ -104,11 +115,10 @@ function AdminEdit() {
           type="text"
           name="type"
           onChange={handleTypeChange}
-          checked={type}
+          value={type}
         />
-
         <button type="submit">Edit</button>
-        <button type="submit">Delete</button>
+        <button onClick={handleDelete}>Delete</button>
       </form>
     </Layout>
   );
