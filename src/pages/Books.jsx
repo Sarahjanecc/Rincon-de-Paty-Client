@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { Link, useNavigate } from "react-router-dom";
-import { getAllBooksService } from "../services/book.services";
+import { getBooksService } from "../services/book.services";
 
 function Books() {
   const [allBooks, setAllBooks] = useState(null);
@@ -14,7 +14,7 @@ function Books() {
 
   const getAllBooks = async () => {
     try {
-      const response = await getAllBooksService();
+      const response = await getBooksService();
       setAllBooks(response.data);
       console.log(response.data);
     } catch (error) {
@@ -34,11 +34,7 @@ function Books() {
     <Layout>
       {allBooks !== null &&
         allBooks.map((eachBook) => {
-          return (
-            <div key={eachBook._id}>
-              <Link to={`/books/${eachBook._id}`}>{eachBook.title}</Link>
-            </div>
-          );
+          return <div key={eachBook._id}>{eachBook.title}</div>;
         })}
     </Layout>
   );

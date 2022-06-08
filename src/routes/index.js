@@ -5,7 +5,7 @@ import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
-import Messages from "../pages/Messages";
+import MessageDetail from "../pages/MessageDetail";
 import NotFound from "../pages/NotFound";
 import Information from "../pages/Information";
 import SignUp from "../pages/SignUp";
@@ -62,14 +62,7 @@ const AllRoutes = () => {
           </IsPrivate>
         }
       />
-      <Route
-        path="/messages"
-        element={
-          <IsPrivate>
-            <Messages />
-          </IsPrivate>
-        }
-      />
+
       <Route
         path="/videos"
         element={
@@ -101,6 +94,14 @@ const AllRoutes = () => {
         element={
           <IsPrivateAdmin>
             <AdminMessages />
+          </IsPrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/messages/:id"
+        element={
+          <IsPrivateAdmin>
+            <MessageDetail />
           </IsPrivateAdmin>
         }
       />

@@ -4,6 +4,10 @@ const getAllBooksService = () => {
   return service.get("/book");
 };
 
+const getBooksService = () => {
+  return service.get("/book/libro");
+};
+
 const getAllAudioBooksService = () => {
   return service.get("/book/audio");
 };
@@ -31,4 +35,5 @@ export {
   getBookById,
   deleteBooksService,
   editBooksService,
+  getBooksService,
 };
