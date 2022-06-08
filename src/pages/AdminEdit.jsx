@@ -18,6 +18,7 @@ function AdminEdit() {
   const [img, setImg] = useState("");
   const [url, setUrl] = useState("");
   const [price, setPrice] = useState(0);
+  // const [purchaseLink, setPurchaseLink] = useState("");
   const [type, setType] = useState("");
 
   const handleTitleChange = (e) => setTitle(e.target.value);
@@ -25,6 +26,7 @@ function AdminEdit() {
   const handleImgChange = (e) => setImg(e.target.value);
   const handleUrlChange = (e) => setUrl(e.target.value);
   const handlePriceChange = (e) => setPrice(e.target.value);
+  // const handlePurchaseLinkChange = (e) => setPurchaseLink(e.target.value);
   const handleTypeChange = (e) => setType(e.target.value);
 
   const handleDelete = () => {
@@ -40,6 +42,7 @@ function AdminEdit() {
         img,
         url,
         price,
+        // purchaseLink,
         type,
         adminId: user._id,
       };
@@ -71,6 +74,7 @@ function AdminEdit() {
       setImg(img);
       setUrl(url);
       setPrice(price);
+      // setPurchaseLink(purchaseLink);
       setType(type);
     } catch (error) {}
   };
@@ -96,8 +100,9 @@ function AdminEdit() {
           value={description}
         />
 
-        <label htmlFor="img">Image</label>
-        <input type="src" name="img" onChange={handleImgChange} value={img} />
+        {/*  
+<label htmlFor="img">Image</label>
+        <input  type="file" name="img"  accept="image/png,image/jpeg" onChange={handleImgChange} value={img} /> */}
 
         <label htmlFor="url">Video</label>
         <input type="url" name="url" onChange={handleUrlChange} value={url} />
@@ -109,6 +114,9 @@ function AdminEdit() {
           onChange={handlePriceChange}
           value={price}
         />
+        {/* 
+<label htmlFor="purchaseLink">PurchaseLink</label>
+        <input type="url" name="purchaseLink" onChange={handlePurchaseLinkChange} value={url} /> */}
 
         <label htmlFor="type">Type</label>
         <input
