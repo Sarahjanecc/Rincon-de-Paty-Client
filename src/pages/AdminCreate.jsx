@@ -36,7 +36,6 @@ function AdminCreate() {
         price,
         purchaseLink,
         type,
-        adminId: user._id,
       };
 
       await addNewBooksService(book);

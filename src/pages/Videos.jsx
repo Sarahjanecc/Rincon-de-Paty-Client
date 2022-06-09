@@ -1,49 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Layout from "../components/Layout";
-import { useNavigate } from "react-router-dom";
-import { getVideosService } from "../services/video.services";
+import ReactPlayer from "react-player";
 
-const Videos = () => {
-  const [allVideos, setAllVideos] = useState(null);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    getAllVideos();
-  }, []);
-
-  const getAllVideos = async () => {
-    try {
-      const response = await getVideosService();
-      setAllVideos(response.data);
-      console.log(response.data);
-    } catch (error) {
-      if (error.response.status === 401) {
-        navigate("/login");
-      } else {
-        navigate("/error");
-      }
-    }
-  };
-
-  if (allVideos === null) {
-    return <h3>... Loading</h3>;
-  }
+function Videos() {
+  const videoArr = [
+    "https://www.youtube.com/watch?v=S_KFDsENWac",
+    "https://www.youtube.com/watch?v=RMgC4_RLbNI",
+    "https://www.youtube.com/watch?v=SfxaVEWkfr8",
+    "https://www.youtube.com/watch?v=JyzKMX56BBk",
+  ];
 
   return (
     <Layout>
-      {allVideos !== null &&
-        allVideos.map((eachVideo) => {
-          return (
-            <div key={eachVideo._id}>
-              <h2>{eachVideo.title}</h2>
-              <img src={eachVideo.img} />
-              <a href={eachVideo.url}>See the video</a>
-            </div>
-          );
-        })}
+      <div>
+        <h2>Videos</h2>
+
+        {videoArr !== null &&
+          videoArr.map((eachVideo) => {
+            return <ReactPlayer url={eachVideo} />;
+          })}
+      </div>
     </Layout>
   );
-};
+}
 
 export default Videos;

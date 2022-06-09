@@ -16,7 +16,7 @@ import AdminEdit from "../pages/AdminEdit";
 import AudioBooks from "../pages/AudioBooks";
 import IsPrivate from "../components/IsPrivate";
 import IsPrivateAdmin from "../components/IsPrivateAdmin";
-import Videos from "../pages/Videos";
+import Videos from "../pages/videos";
 import AudioBooksDetails from "../pages/AudioBooksDetails";
 import MainAdmin from "../pages/MainAdmin";
 
@@ -123,23 +123,6 @@ const AllRoutes = () => {
       />
       <Route
         path="/admin/edit/:id"
-        element={
-          <IsPrivateAdmin>
-            <AdminEdit />
-          </IsPrivateAdmin>
-        }
-      />
-
-      <Route
-        path="/admin/videoCreate"
-        element={
-          <IsPrivateAdmin>
-            <AdminCreate />
-          </IsPrivateAdmin>
-        }
-      />
-      <Route
-        path="/admin/videoEdit/:id"
         element={
           <IsPrivateAdmin>
             <AdminEdit />
