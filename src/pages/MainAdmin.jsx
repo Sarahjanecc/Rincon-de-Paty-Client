@@ -10,6 +10,8 @@ const MainAdmin = () => {
       <NavLink to="/admin/books">Books</NavLink>
       <br />
       <NavLink to="/admin/messages">Messages</NavLink>
+      <br />
+      <NavLink to="/video/create">Create Video</NavLink>
     </Layout>
   );
 };

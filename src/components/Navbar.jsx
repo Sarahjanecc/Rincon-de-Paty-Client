@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import Button from "react-bootstrap/Button";
 
 function Navbar() {
   const { isLoggedIn, user, authenticateUser } = useContext(AuthContext);
@@ -31,7 +32,9 @@ function Navbar() {
           <NavLink to="/main" style={toggleStyles}>
             Main
           </NavLink>
-          <button onClick={handleLogout}>Log Out</button>
+          <Button variant="outline-danger" onClick={handleLogout}>
+            Log Out
+          </Button>
         </nav>
       ) : (
         <nav>

@@ -34,7 +34,14 @@ function Books() {
     <Layout>
       {allBooks !== null &&
         allBooks.map((eachBook) => {
-          return <div key={eachBook._id}>{eachBook.title}</div>;
+          return (
+            <div key={eachBook._id}>
+              <h2>{eachBook.title}</h2>
+              <img src={eachBook.img} />
+              <p>{eachBook.description}</p>
+              <a href={eachBook.purchaseLink}>Buy a Book</a>
+            </div>
+          );
         })}
     </Layout>
   );

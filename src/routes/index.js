@@ -130,6 +130,23 @@ const AllRoutes = () => {
         }
       />
 
+      <Route
+        path="/admin/videoCreate"
+        element={
+          <IsPrivateAdmin>
+            <AdminCreate />
+          </IsPrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/videoEdit/:id"
+        element={
+          <IsPrivateAdmin>
+            <AdminEdit />
+          </IsPrivateAdmin>
+        }
+      />
+
       {/* error FE routes */}
       <Route path="/error" element={<Error />} />
       <Route path="*" element={<NotFound />} />

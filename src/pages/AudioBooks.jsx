@@ -36,7 +36,12 @@ function AudioBooks() {
         allBooks.map((eachBook) => {
           return (
             <div key={eachBook._id}>
-              <Link to={`/audiobooks/${eachBook._id}`}>{eachBook.title}</Link>
+              <h2>{eachBook.title}</h2>
+              <img src={eachBook.img} />
+              <p>{eachBook.description}</p>
+              <a href={eachBook.url} target="_blank">
+                Check Audio
+              </a>
             </div>
           );
         })}

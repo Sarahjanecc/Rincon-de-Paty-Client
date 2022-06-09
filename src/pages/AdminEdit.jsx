@@ -18,7 +18,7 @@ function AdminEdit() {
   const [img, setImg] = useState("");
   const [url, setUrl] = useState("");
   const [price, setPrice] = useState(0);
-  // const [purchaseLink, setPurchaseLink] = useState("");
+  const [purchaseLink, setPurchaseLink] = useState("");
   const [type, setType] = useState("");
 
   const handleTitleChange = (e) => setTitle(e.target.value);
@@ -26,7 +26,7 @@ function AdminEdit() {
   const handleImgChange = (e) => setImg(e.target.value);
   const handleUrlChange = (e) => setUrl(e.target.value);
   const handlePriceChange = (e) => setPrice(e.target.value);
-  // const handlePurchaseLinkChange = (e) => setPurchaseLink(e.target.value);
+  const handlePurchaseLinkChange = (e) => setPurchaseLink(e.target.value);
   const handleTypeChange = (e) => setType(e.target.value);
 
   const handleDelete = () => {
@@ -38,14 +38,15 @@ function AdminEdit() {
     try {
       const books = {
         title,
-        description,
         img,
+        description,
         url,
         price,
-        // purchaseLink,
+        purchaseLink,
         type,
-        adminId: user._id,
+        // adminId: user._id, // ! no se envia desde el front, esto debe venir del backend (payload)
       };
+      console.log(books);
 
       await editBooksService(id, books);
       if (type === "audiolibro") {
@@ -67,14 +68,15 @@ function AdminEdit() {
     try {
       const response = await getBookById(bookId);
       console.log(response);
-      const { title, description, img, url, price, type } = response.data;
+      const { title, img, description, url, price, type, purchaseLink } =
+        response.data;
 
       setTitle(title);
-      setDescription(description);
       setImg(img);
+      setDescription(description);
       setUrl(url);
       setPrice(price);
-      // setPurchaseLink(purchaseLink);
+      setPurchaseLink(purchaseLink);
       setType(type);
     } catch (error) {}
   };
@@ -100,9 +102,8 @@ function AdminEdit() {
           value={description}
         />
 
-        {/*  
-<label htmlFor="img">Image</label>
-        <input  type="file" name="img"  accept="image/png,image/jpeg" onChange={handleImgChange} value={img} /> */}
+        <label htmlFor="img">Image</label>
+        <input type="img" name="img" onChange={handleImgChange} value={img} />
 
         <label htmlFor="url">Video</label>
         <input type="url" name="url" onChange={handleUrlChange} value={url} />
@@ -114,9 +115,13 @@ function AdminEdit() {
           onChange={handlePriceChange}
           value={price}
         />
-        {/* 
-<label htmlFor="purchaseLink">PurchaseLink</label>
-        <input type="url" name="purchaseLink" onChange={handlePurchaseLinkChange} value={url} /> */}
+        <label htmlFor="purchaseLink">PurchaseLink</label>
+        <input
+          type="url"
+          name="purchaseLink"
+          onChange={handlePurchaseLinkChange}
+          value={purchaseLink}
+        />
 
         <label htmlFor="type">Type</label>
         <input
