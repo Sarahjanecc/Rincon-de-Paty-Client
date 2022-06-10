@@ -16,7 +16,7 @@ import AdminEdit from "../pages/AdminEdit";
 import AudioBooks from "../pages/AudioBooks";
 import IsPrivate from "../components/IsPrivate";
 import IsPrivateAdmin from "../components/IsPrivateAdmin";
-import Videos from "../pages/videos";
+import Videos from "../pages/Video";
 import AudioBooksDetails from "../pages/AudioBooksDetails";
 import MainAdmin from "../pages/MainAdmin";
 
