@@ -8,6 +8,9 @@ import {
 import Layout from "../components/Layout";
 import { AuthContext } from "../context/auth.context.js";
 
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 function AdminEdit() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -44,7 +47,6 @@ function AdminEdit() {
         price,
         purchaseLink,
         type,
-        // adminId: user._id, // ! no se envia desde el front, esto debe venir del backend (payload)
       };
       console.log(books);
 
@@ -85,54 +87,69 @@ function AdminEdit() {
     <Layout>
       <h3>Book Edit</h3>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          onChange={handleTitleChange}
-          value={title}
-        />
-
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          onChange={handleDescriptionChange}
-          value={description}
-        />
-
-        <label htmlFor="img">Image</label>
-        <input type="img" name="img" onChange={handleImgChange} value={img} />
-
-        <label htmlFor="url">Video</label>
-        <input type="url" name="url" onChange={handleUrlChange} value={url} />
-
-        <label htmlFor="price">Price</label>
-        <input
-          type="text"
-          name="price"
-          onChange={handlePriceChange}
-          value={price}
-        />
-        <label htmlFor="purchaseLink">PurchaseLink</label>
-        <input
-          type="url"
-          name="purchaseLink"
-          onChange={handlePurchaseLinkChange}
-          value={purchaseLink}
-        />
-
-        <label htmlFor="type">Type</label>
-        <input
-          type="text"
-          name="type"
-          onChange={handleTypeChange}
-          value={type}
-        />
-        <button type="submit">Edit</button>
-        <button onClick={handleDelete}>Delete</button>
-      </form>
+      <div style={{ justifyContent: "center", display: "flex" }}>
+        <Form onSubmit={handleSubmit} style={{ width: "400px" }}>
+          <Form.Label htmlFor="title">Title</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            onChange={handleTitleChange}
+            value={title}
+          />
+          <Form.Label htmlFor="description">Description</Form.Label>
+          <Form.Control
+            type="text"
+            name="description"
+            onChange={handleDescriptionChange}
+            value={description}
+          />
+          <Form.Label htmlFor="img">Image</Form.Label>
+          <Form.Control
+            type="img"
+            name="img"
+            onChange={handleImgChange}
+            value={img}
+          />
+          <Form.Label htmlFor="url">Video</Form.Label>
+          <Form.Control
+            type="url"
+            name="url"
+            onChange={handleUrlChange}
+            value={url}
+          />
+          <Form.Label htmlFor="price">Price</Form.Label>
+          <Form.Control
+            type="text"
+            name="price"
+            onChange={handlePriceChange}
+            value={price}
+          />
+          <Form.Label htmlFor="purchaseLink">PurchaseLink</Form.Label>
+          <Form.Control
+            type="url"
+            name="purchaseLink"
+            onChange={handlePurchaseLinkChange}
+            value={purchaseLink}
+          />
+          <Form.Label htmlFor="type">Type</Form.Label>
+          <Form.Control
+            type="text"
+            name="type"
+            onChange={handleTypeChange}
+            value={type}
+          />
+          <div className="d-grid mt-2">
+            <Button variant="outline-success" type="submit">
+              Edit
+            </Button>
+          </div>
+          <div className="d-grid mt-2">
+            <Button variant="outline-danger" onClick={handleDelete}>
+              Delete
+            </Button>
+          </div>
+        </Form>
+      </div>
     </Layout>
   );
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import Layout from "../components/Layout";
 import ReactPlayer from "react-player";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Videos() {
   const videoArr = [
@@ -12,14 +14,16 @@ function Videos() {
 
   return (
     <Layout>
-      <div>
-        <h2>Videos</h2>
-
+      <Row>
         {videoArr !== null &&
           videoArr.map((eachVideo) => {
-            return <ReactPlayer url={eachVideo} />;
+            return (
+              <Col sm={6} className="d-flex justify-content-center p-4">
+                <ReactPlayer url={eachVideo} />
+              </Col>
+            );
           })}
-      </div>
+      </Row>
     </Layout>
   );
 }

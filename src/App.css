@@ -1,4 +1,4 @@
-.container {
+.layout {
   min-height: 100vh;
   display: grid; 
   grid-template-rows: 80px 1fr 60px; 
@@ -12,5 +12,54 @@
 .footer { grid-area: footer; }
 
 .main { grid-area: main; 
-  background-color: aquamarine;
+  background: #FFF7DB;
+}
+
+.home { 
+  background-image: url('/public/img/home.gif');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
+
+.principal { 
+  background-image: url('/public/img/main.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
+}
+
+.login { 
+  background-image: url('/public/img/login.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
+}
+
+.sign-up { 
+  background-image: url('/public/img/sign-up.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
+}
+
+.information { 
+  background-image: url('/public/img/info.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
+}
+
+.main-admin { 
+  background-image: url('/public/img/main-admin.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
 }

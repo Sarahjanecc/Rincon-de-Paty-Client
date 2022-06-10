@@ -5,6 +5,7 @@ import {
   deleteMessageService,
 } from "../services/messages.services";
 import Layout from "../components/Layout";
+import Button from "react-bootstrap/Button";
 
 function MessageDetail() {
   const navigate = useNavigate();
@@ -40,7 +41,9 @@ function MessageDetail() {
     <Layout>
       <p>{infomration.name}</p>
       <p>{infomration.message}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <Button variant="outline-danger" onClick={handleDelete}>
+        Delete
+      </Button>
     </Layout>
   );
 }

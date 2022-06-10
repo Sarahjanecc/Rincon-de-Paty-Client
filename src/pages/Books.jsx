@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getBooksService } from "../services/book.services";
+import Card from "react-bootstrap/Card";
+import Nav from "react-bootstrap/Nav";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Books() {
   const [allBooks, setAllBooks] = useState(null);
@@ -32,17 +36,23 @@ function Books() {
 
   return (
     <Layout>
-      {allBooks !== null &&
-        allBooks.map((eachBook) => {
-          return (
-            <div key={eachBook._id}>
-              <h2>{eachBook.title}</h2>
-              <img src={eachBook.img} />
-              <p>{eachBook.description}</p>
-              <a href={eachBook.purchaseLink}>Buy a Book</a>
-            </div>
-          );
-        })}
+      <Row>
+        {allBooks !== null &&
+          allBooks.map((eachBook) => {
+            return (
+              <Col sm={6} className="d-flex justify-content-center p-4">
+                <Card key={eachBook._id} style={{ width: "300px" }}>
+                  <Card.Img variant="top" src={eachBook.img} />
+                  <Card.Body>
+                    <Card.Title>{eachBook.title}</Card.Title>
+                    <Card.Text>{eachBook.description}</Card.Text>
+                    <Nav.Link href={eachBook.purchaseLink}>Buy a Book</Nav.Link>
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          })}
+      </Row>
     </Layout>
   );
 }

@@ -5,6 +5,9 @@ import { AuthContext } from "../context/auth.context.js";
 import { loginService } from "../services/auth.services";
 import { useNavigate } from "react-router-dom";
 
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,28 +44,32 @@ const Login = () => {
   };
   return (
     <Layout>
-      Login
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="text"
-          name="email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        {errorMessage !== null && <p>{errorMessage}</p>}
-
-        <button>Login</button>
-      </form>
+      <div className="login">
+        <div style={{ justifyContent: "center", display: "flex" }}>
+          <Form onSubmit={handleSubmit} style={{ width: "400px" }}>
+            <Form.Label htmlFor="email">Email:</Form.Label>
+            <Form.Control
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleEmailChange}
+            />
+            <Form.Label htmlFor="password">Password:</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+            {errorMessage !== null && <p>{errorMessage}</p>}
+            <div className="d-grid mt-2">
+              <Button variant="outline-primary" type="submit">
+                Login
+              </Button>
+            </div>
+          </Form>
+        </div>
+      </div>
     </Layout>
   );
 };

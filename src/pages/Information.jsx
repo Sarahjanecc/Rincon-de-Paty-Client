@@ -4,6 +4,8 @@ import Layout from "../components/Layout";
 import { AuthContext } from "../context/auth.context.js";
 import { useNavigate } from "react-router-dom";
 import { addNewMessageService } from "../services/messages.services";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function Information() {
   const navigate = useNavigate();
@@ -33,26 +35,32 @@ function Information() {
 
   return (
     <Layout>
-      <h3>Information </h3>
-
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          onChange={handleNameChange}
-          value={name}
-        />
-
-        <label htmlFor="message">Message</label>
-        <input
-          type="text"
-          name="message"
-          onChange={handleMessageChange}
-          value={message}
-        />
-        <button type="submit">Send</button>
-      </form>
+      <div
+        className="information"
+        style={{ justifyContent: "center", display: "flex" }}
+      >
+        <Form onSubmit={handleSubmit} style={{ width: "400px" }}>
+          <Form.Label htmlFor="name">Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            onChange={handleNameChange}
+            value={name}
+          />
+          <Form.Label htmlFor="message">Message</Form.Label>
+          <Form.Control
+            type="text"
+            name="message"
+            onChange={handleMessageChange}
+            value={message}
+          />
+          <div className="d-grid mt-2">
+            <Button variant="outline-primary" type="submit">
+              Send
+            </Button>
+          </div>
+        </Form>
+      </div>
     </Layout>
   );
 }

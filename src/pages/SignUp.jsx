@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import { signupService } from "../services/auth.services";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -39,34 +41,42 @@ const SignUp = () => {
 
   return (
     <Layout>
-      SignUp
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleNameChange}
-        />
+      <div
+        className="sign-up"
+        style={{ justifyContent: "center", display: "flex" }}
+      >
+        <Form onSubmit={handleSubmit} style={{ width: "400px" }}>
+          <Form.Label htmlFor="name">Name:</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleNameChange}
+          />
 
-        <label htmlFor="email">email:</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handlEmailChange}
-        />
+          <Form.Label htmlFor="email">email:</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={email}
+            onChange={handlEmailChange}
+          />
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-        {errorMessage !== null && <p>{errorMessage}</p>}
-        <button>Signup</button>
-      </form>
+          <Form.Label htmlFor="password">Password:</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
+          {errorMessage !== null && <p>{errorMessage}</p>}
+          <div className="d-grid mt-2">
+            <Button variant="outline-primary" type="submit">
+              Sign up
+            </Button>
+          </div>
+        </Form>
+      </div>
     </Layout>
   );
 };

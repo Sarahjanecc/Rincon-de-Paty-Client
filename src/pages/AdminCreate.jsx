@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { addNewBooksService } from "../services/book.services";
 import Layout from "../components/Layout";
 import { AuthContext } from "../context/auth.context.js";
-// import Form from "react-bootstrap/Form";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function AdminCreate() {
   const navigate = useNavigate();
@@ -53,53 +54,69 @@ function AdminCreate() {
     <Layout>
       <h3>Create Book </h3>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          onChange={handleTitleChange}
-          value={title}
-        />
+      <div style={{ justifyContent: "center", display: "flex" }}>
+        <Form onSubmit={handleSubmit} style={{ width: "400px" }}>
+          <Form.Label htmlFor="title">Title</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            onChange={handleTitleChange}
+            value={title}
+          />
 
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          onChange={handleDescriptionChange}
-          value={description}
-        />
+          <Form.Label htmlFor="description">Description</Form.Label>
+          <Form.Control
+            type="text"
+            name="description"
+            onChange={handleDescriptionChange}
+            value={description}
+          />
 
-        <label htmlFor="img">Image</label>
-        <input type="img" name="img" onChange={handleImgChange} value={img} />
+          <Form.Label htmlFor="img">Image</Form.Label>
+          <Form.Control
+            type="img"
+            name="img"
+            onChange={handleImgChange}
+            value={img}
+          />
 
-        <label htmlFor="url">Video</label>
-        <input type="url" name="url" onChange={handleUrlChange} value={url} />
+          <Form.Label htmlFor="url">Video</Form.Label>
+          <Form.Control
+            type="url"
+            name="url"
+            onChange={handleUrlChange}
+            value={url}
+          />
 
-        <label htmlFor="price">Price</label>
-        <input
-          type="text"
-          name="price"
-          onChange={handlePriceChange}
-          value={price}
-        />
-        <label htmlFor="purchaseLink">PurchaseLink</label>
-        <input
-          type="url"
-          name="purchaseLink"
-          onChange={handlePurchaseLinkChange}
-          value={purchaseLink}
-        />
+          <Form.Label htmlFor="price">Price</Form.Label>
+          <Form.Control
+            type="text"
+            name="price"
+            onChange={handlePriceChange}
+            value={price}
+          />
+          <Form.Label htmlFor="purchaseLink">PurchaseLink</Form.Label>
+          <Form.Control
+            type="url"
+            name="purchaseLink"
+            onChange={handlePurchaseLinkChange}
+            value={purchaseLink}
+          />
 
-        <label htmlFor="type">Type</label>
-        <input
-          type="text"
-          name="type"
-          onChange={handleTypeChange}
-          value={type}
-        />
-        <button type="submit">Create</button>
-      </form>
+          <Form.Label htmlFor="type">Type</Form.Label>
+          <Form.Control
+            type="text"
+            name="type"
+            onChange={handleTypeChange}
+            value={type}
+          />
+          <div className="d-grid mt-2">
+            <Button variant="outline-primary" type="submit">
+              Send
+            </Button>
+          </div>
+        </Form>
+      </div>
     </Layout>
   );
 }

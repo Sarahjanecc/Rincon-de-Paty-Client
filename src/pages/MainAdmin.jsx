@@ -5,13 +5,13 @@ import { NavLink } from "react-router-dom";
 const MainAdmin = () => {
   return (
     <Layout>
-      <NavLink to="/admin/create">Create books/audiobooks</NavLink>
-      <br />
-      <NavLink to="/admin/books">Books</NavLink>
-      <br />
-      <NavLink to="/admin/messages">Messages</NavLink>
-      <br />
-      <NavLink to="/video/create">Create Video</NavLink>
+      <div className="main-admin">
+        <NavLink to="/admin/create">Create books/audiobooks</NavLink>
+        <br />
+        <NavLink to="/admin/books">Books</NavLink>
+        <br />
+        <NavLink to="/admin/messages">Messages</NavLink>
+      </div>
     </Layout>
   );
 };

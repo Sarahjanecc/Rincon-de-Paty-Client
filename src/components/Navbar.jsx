@@ -2,8 +2,10 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import Button from "react-bootstrap/Button";
+import { Navbar } from "react-bootstrap";
+import Nav from "react-bootstrap/Nav";
 
-function Navbar() {
+function MainNavbar() {
   const { isLoggedIn, user, authenticateUser } = useContext(AuthContext);
 
   const toggleStyles = (navInfo) => {
@@ -25,19 +27,27 @@ function Navbar() {
 
   return (
     <div>
-      {user !== null && <p>Welcome: {user.name}</p>}
-
       {isLoggedIn === true ? (
-        <nav className="header">
-          <NavLink to="/main" style={toggleStyles}>
-            Main
-          </NavLink>
+        <Navbar
+          class="header d-flex justify-content-between align-items-center px-2"
+          bg="light"
+          style={{ justifyContent: "space-between", height: "100%" }}
+        >
+          <Nav.Link>
+            <NavLink to="/main">Main</NavLink>
+          </Nav.Link>
+
+          {user !== null && <p>Welcome: {user.name}</p>}
+
           <Button variant="outline-danger" onClick={handleLogout}>
             Log Out
           </Button>
-        </nav>
+        </Navbar>
       ) : (
-        <nav>
+        <Navbar
+          class="header d-flex justify-content-between align-items-center px-2 h-100"
+          style={{ justifyContent: "space-between", height: "100%" }}
+        >
           <NavLink to="/" style={toggleStyles}>
             Home
           </NavLink>
@@ -49,10 +59,10 @@ function Navbar() {
           <NavLink to="/login" style={toggleStyles}>
             Login
           </NavLink>
-        </nav>
+        </Navbar>
       )}
     </div>
   );
 }
 
-export default Navbar;
+export default MainNavbar;
