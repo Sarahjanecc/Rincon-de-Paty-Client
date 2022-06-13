@@ -1,70 +1,229 @@
-# Getting Started with Create React App
+# El Rincon De Paty
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Space created so that the Author can share his literary works and communicate with his followers, and also share videos and activities that promote education and learning for all ages.
 
-In the project directory, you can run:
+## User Stories
 
-### `npm start`
+**404:** As an admin/user they can see a 404 page if they try to reach a page that does not exist so that they know it doesnt exist.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Signup:** the user/admin can sign up in the platform so can goes to login.
+- **Login:** the user/admincan login to the platform so goes to all features
+- **Logout:** the user/admin can logout from the platform so no one else can use it
+- **AudioBooks** User/Admin can choose the book to listen by youtube link
+- **Books**user/admin can check all available books and can go directly to by by amazon by the link
+- **Videos** user/admin can check the video to see directly in the page
+- **Information** user can send a message directly to the author
+- **main Admin** admin can create, edit and deleta books aalso read and delete messages.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Client / Frontend
 
-### `npm test`
+React Router Routes (React App)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+public routes \*/}
+<Route path="/" element={<Home />} />
+<Route path="/login" element={<Login />} />
+<Route path="/signup" element={<SignUp />} />
 
-### `npm run build`
+      {/* private routes */}
+      <Route
+        path="/books"
+        element={
+          <IsPrivate>
+            <Books />
+          </IsPrivate>
+        }
+      />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+      <Route
+        path="/audiobooks"
+        element={
+          <IsPrivate>
+            <AudioBooks />
+          </IsPrivate>
+        }
+      />
+      <Route
+        path="/audiobooks/:id"
+        element={
+          <IsPrivate>
+            <AudioBooksDetails />
+          </IsPrivate>
+        }
+      />
+      <Route
+        path="/main"
+        element={
+          <IsPrivate>
+            <Main />
+          </IsPrivate>
+        }
+      />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+      <Route
+        path="/videos"
+        element={
+          <IsPrivate>
+            <Videos />
+          </IsPrivate>
+        }
+      />
+      <Route
+        path="/information"
+        element={
+          <IsPrivate>
+            <Information />
+          </IsPrivate>
+        }
+      />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+      {/* private admin routes */}
+      <Route
+        path="/admin/main"
+        element={
+          <IsPrivateAdmin>
+            <MainAdmin />
+          </IsPrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/messages"
+        element={
+          <IsPrivateAdmin>
+            <AdminMessages />
+          </IsPrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/messages/:id"
+        element={
+          <IsPrivateAdmin>
+            <MessageDetail />
+          </IsPrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/books"
+        element={
+          <IsPrivateAdmin>
+            <AdminBooks />
+          </IsPrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/create"
+        element={
+          <IsPrivateAdmin>
+            <AdminCreate />
+          </IsPrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/edit/:id"
+        element={
+          <IsPrivateAdmin>
+            <AdminEdit />
+          </IsPrivateAdmin>
+        }
+      />
 
-### `npm run eject`
+      {/* error FE routes */}
+      <Route path="/error" element={<Error />} />
+      <Route path="*" element={<NotFound />} />
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Components
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+IsPrivate
+IsPrivateAdmin
+Layout
+Navbar
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Services
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+auth.Services
+Books.Services
+Config.Services
+Messages.Services
+Video.Services
 
-## Learn More
+### Server / Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+BookModel
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+title: {
+type: String,
+required: true,
+},
+img: {
+type: String,
+required: true,
+},
+url: {
+type: String,
+},
+purchaseLink: {
+type: String,
+},
+description: {
+type: String,
+},
+price: {
+type: Number,
+required: true,
+},
+type: {
+type: String,
+enum: ["libro", "audiolibro"],
+},
+adminId: {
+type: Schema.Types.ObjectId,
+ref: "user",
+},
 
-### Code Splitting
+InformationModel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+name: {
+type: String,
+required: true,
+},
+email: {
+type: String,
+required: true,
+},
+message: {
+type: String,
+},
+userId: {
+type: Schema.Types.ObjectId,
+ref: "user",
+},
 
-### Analyzing the Bundle Size
+UserModel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+name: {
+type: String,
+required: true,
+},
+email: {
+type: String,
+unique: true,
+required: true,
+},
+password: {
+type: String,
+required: true,
+},
+admin: {
+type: Boolean,
+default: false,
+},
 
-### Making a Progressive Web App
+### Git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+https://github.com/Sarahjanecc/rincon-de-paty-client.git
+https://github.com/Sarahjanecc/rincon-de-paty-server.git
 
-### Advanced Configuration
+### Slides
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://rincon-de-paty.netlify.app/
